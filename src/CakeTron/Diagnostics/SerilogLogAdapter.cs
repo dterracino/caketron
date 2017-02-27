@@ -1,5 +1,5 @@
 ﻿using System;
-using CakeTron.Core.Diagnostics;
+using Dotbot.Diagnostics;
 using Serilog;
 using Serilog.Context;
 

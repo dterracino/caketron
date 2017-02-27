@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
-using CakeTron.Core;
-using CakeTron.Gitter;
-using CakeTron.Slack;
+using CakeTron.Azure;
+using CakeTron.Parts;
+using Dotbot;
+using Dotbot.Gitter;
+using Dotbot.Slack;
 using Microsoft.Extensions.Configuration;
 using Serilog.Events;
 
@@ -19,9 +21,13 @@ namespace CakeTron
             var robot = new RobotBuilder()
                 .UseGitter(configuration["Gitter:Token"])
                 .UseSlack(configuration["Slack:Token"])
-                .UseKarma()
-                .UseDefaultRobotParts()
                 .UseSerilogConsole(LogEventLevel.Debug)
+                .UseAzureWebJobShutdownListener()
+                .AddPart<KarmaPart>()
+                .AddPart<PingPart>()
+                .AddPart<DirectivesPart>()
+                .AddPart<UptimePart>()
+                .AddPart<PodBayDoorsPart>()
                 .Build();
 
             // Start the robot.

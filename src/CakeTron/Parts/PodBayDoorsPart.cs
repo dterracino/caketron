@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CakeTron.Core.Contexts;
-using CakeTron.Core.Utilities;
+using Dotbot;
 
 namespace CakeTron.Parts
 {
@@ -20,17 +19,22 @@ namespace CakeTron.Parts
             };
         }
 
-        protected override bool HandleMention(MessageContext context, string message)
+        protected override bool HandleMention(ReplyContext context, string message)
         {
             foreach (var phrase in _phrases)
             {
-                if (message.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                if (Contains(message, phrase, StringComparison.OrdinalIgnoreCase))
                 {
                     context.Broadcast($"I'm sorry, {context.Message.User.DisplayName}. I'm afraid I can't do that.");
                     return true;
                 }
             }
             return false;
+        }
+
+        private static bool Contains(string source, string toCheck, StringComparison comp)
+        {
+            return source.IndexOf(toCheck, comp) >= 0;
         }
     }
 }

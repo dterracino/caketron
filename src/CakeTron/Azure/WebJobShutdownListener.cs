@@ -2,9 +2,10 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using CakeTron.Core.Diagnostics;
+using Dotbot;
+using Dotbot.Diagnostics;
 
-namespace CakeTron.Core.Internal
+namespace CakeTron.Azure
 {
     internal sealed class WebJobShutdownListener : IWorker
     {
@@ -12,7 +13,7 @@ namespace CakeTron.Core.Internal
 
         public string FriendlyName => "Web job shutdown listener";
 
-        public WebJobShutdownListener(ILog log) 
+        public WebJobShutdownListener(ILog log)
         {
             _log = log;
         }

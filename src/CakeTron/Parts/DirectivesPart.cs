@@ -1,5 +1,4 @@
-﻿using CakeTron.Core.Contexts;
-using CakeTron.Core.Utilities;
+﻿using Dotbot;
 
 namespace CakeTron.Parts
 {
@@ -12,7 +11,7 @@ namespace CakeTron.Parts
         {
         }
 
-        protected override void HandleCommand(MessageContext context, string[] args)
+        protected override void HandleCommand(ReplyContext context, string[] args)
         {
             context.Broadcast("1. Serve the public trust\n2. Protect the innocent\n3. Uphold the law");
         }

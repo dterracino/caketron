@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using CakeTron.Core;
-using CakeTron.Core.Contexts;
-using CakeTron.Core.Domain;
+using Dotbot;
+using Dotbot.Models;
 
 namespace CakeTron.Parts
 {
-    internal sealed class KarmaPart : RobotPart
+    public sealed class KarmaPart : RobotPart
     {
         private readonly Brain _brain;
         private readonly Regex _regex;
@@ -37,7 +36,7 @@ namespace CakeTron.Parts
             _state = new Dictionary<string, Dictionary<string, int>>(data, StringComparer.OrdinalIgnoreCase);
         }
 
-        public override bool Handle(MessageContext context)
+        public override bool Handle(ReplyContext context)
         {
             var match = _regex.Match(context.Message.Text);
             if (match.Success)

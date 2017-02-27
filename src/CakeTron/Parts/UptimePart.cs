@@ -1,6 +1,5 @@
 ﻿using System;
-using CakeTron.Core.Contexts;
-using CakeTron.Core.Utilities;
+using Dotbot;
 using Humanizer;
 using Humanizer.Localisation;
 
@@ -18,7 +17,7 @@ namespace CakeTron.Parts
             _started = DateTime.Now;
         }
 
-        protected override void HandleCommand(MessageContext context, string[] args)
+        protected override void HandleCommand(ReplyContext context, string[] args)
         {
             var elapsed = DateTime.Now - _started;
             context.Broadcast($"I've been sentient for {elapsed.Humanize(5, minUnit: TimeUnit.Second)}.");
